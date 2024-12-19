@@ -1,0 +1,53 @@
+Cloning CGNet
+
+7/14
+Using example with alanine dipeptide (works)
+Trying MoDEL to see if can get trajectories
+pdb file from PDB only has coordinates not force field
+cloned torchmd-net because maybe can get forces from pdb file from it
+
+7/15
+Had to run FlexServ simulation to then download PCZ file which was uncompressed to Amber CRD file
+
+7/20
+Tried outputting multiple energy coefficients however had problems with tensor (may try again later)
+
+7/21
+Implemented RNN
+
+7/22
+Finalized RNN and muliple output
+
+7/24
+Fixed RNN probs
+Implemented RMSD for results
+Obtained results for Baseline+RNN/GRU/LSTM implementations and variations
+Tried Chignolin data set but only 1D not 3D
+
+
+
+
+Alg Modification Ideas:
+- Output polynomial equation for energy instead of scalar quantity
+- Determining forces based on 2nd derivative of distance traveled by coordinates (acceleration) multiplied by mass
+- RNN to predict energies
+
+
+Accuracy (Alanine Dipeptide, 1000 frames):
+1. Baseline (50 epochs) - (RMSD: 467.956578489393), KL: 463.3662979322291
+2. RNN (Output Size 50, Layers 1, Dropout 0.2, Activation 'Tanh') (50 epochs) - RMSD: 470.8443286716938, KL: 411.33039786024534
+	Output Size 100- 470.7809223756194
+	Output Size 20- 471.9283345937729
+	B Layers 3- 477.6244143471122
+	Layers 3- 474.7463782839477
+	Dropout 0.4- 473.5799941495061
+	Dropout 0- 472.7984715588391
+3. GRU (Output 1, Layers 1) (50 epochs) - (RMSD: 474.7621), KL: 380.6143471190156
+	Dropout 0.2- 464.2965180501342
+	Dropout 0.3- 471.28370408527553
+4. LSTM (Output 1, Layers 1) (50 epochs) - RMSD: 468.2426606044173, KL: 78.94504364213431
+	Dropout 0.2- KL: 74.53484757895004, RMSD: 471.2938641011715
+	Dropout 0.3- 465.89189544320107
+	Layers 2, Dropout 0.2- 478.73109865933657
+5. Optimal LSTM then LinearLayer- KL: 454.29265713999723, RMSD: 483.9985102824867
+6. K means clustering then RNN

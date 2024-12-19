@@ -1,0 +1,7 @@
+In order to change model tested, refer to lines 37-39. To run a certain model simply uncomment that line and comment out the other models. For instance, by default the "Baseline NN" model is uncommented while the others are commented to not allow them to run.
+
+In line 42, the number of frames run is specified. In order to run all frames in the chignolin data folder set n_frames = 0.
+
+If the model loss function does not seem to converge, the epochs can be increased at line 120 by changing num_epochs.
+
+The run the program simple run python cg_main_cg-net.py

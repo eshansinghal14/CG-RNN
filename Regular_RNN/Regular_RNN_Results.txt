@@ -1,0 +1,3 @@
+
+Energy JS Divergence: 0.46901493763424823
+Energy MSE: 3.632025370335813
